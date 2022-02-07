@@ -34,7 +34,7 @@ x_dot = [px_dot;
 
 T_eq = g*m/(cos(0)*cos(0));
 % eqilibrium points
-x_eq = [0 0 -h 0 0 0 0 0 0 0 0 0];
+x_eq = [0 0 -10 0 0 0 0 0 0 0 0 0];
 u_eq = [T_eq 0 0 0];
 %% Linerization
 
@@ -52,24 +52,117 @@ throttle_step = cat(1, 0.01*(heaviside(t-0.1) - heaviside(t-0.2)), ...
                        zeros(size(t)),...
                        zeros(size(t)),...
                        zeros(size(t)));
-EAR_step = cat(1, 0.004 * (heaviside(t-0.1) - heaviside(t-0.2));
-aileron_step = elev_step;
-rudder_step = elev_step;
+elev_step = cat(1, zeros(size(t)),...
+                   zeros(size(t)),...
+                   0.004 * (heaviside(t-0.1) - heaviside(t-0.2)),...
+                   zeros(size(t)));
+aileron_step = cat(1, zeros(size(t)),...
+                   0.004 * (heaviside(t-0.1) - heaviside(t-0.2)),...
+                   zeros(size(t)),...
+                   zeros(size(t)));
+rudder_step = cat(1, zeros(size(t)),...
+                   zeros(size(t)),...
+                   zeros(size(t)),...
+                   0.004 * (heaviside(t-0.1) - heaviside(t-0.2)));
 
 
 % plotting input signals
-figure; hold on;
-plot(t, throttle_step, t, elev_step, t, aileron_step, t, rudder_step);
-legend('T','E','A','R');
+% figure; hold on;
+% plot(t, throttle_step, t, elev_step, t, aileron_step, t, rudder_step);
+% legend('T','E','A','R');
 
 % create linearized state space system of drone
 drone_linearized = ss(lin_a_eq, lin_b_eq, c, zeros(length(x),length(u)));
 
 % simulate model using lsim
-t_out = lsim(drone_linearized, throttle_step, t, x_eq);
-e_out = lsim(drone_linearized, elev_step, t, x_eq);
-a_out = lsim(drone_linearized, throttle_step, t, x_eq);
-r_out = lsim(drone_linearized, throttle_step, t, x_eq);
+t_out = lsim(drone_linearized, throttle_step, t);
+e_out = lsim(drone_linearized, elev_step, t);
+a_out = lsim(drone_linearized, aileron_step, t);
+r_out = lsim(drone_linearized, rudder_step, t);
 
+%% Plotting
 
+% Throttle Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, t_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, t_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, t_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, t_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Throttle Step Response');
+
+% Elevator Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, e_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, e_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, e_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, e_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Elevator Step Response');
+
+% Aileron Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, a_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, a_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, a_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, a_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Aileron Step Response');
+
+% Throttle Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, t_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, t_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, t_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, t_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Throttle Step Response');
 

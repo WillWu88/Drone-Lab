@@ -34,7 +34,7 @@ x_dot = [px_dot;
 
 T_eq = g*m/(cos(0)*cos(0));
 % eqilibrium points
-x_eq = [0 0 -10 0 0 0 0 0 0 0 0 0];
+x_eq = [0 0 -h 0 0 0 0 0 0 0 0 0];
 u_eq = [T_eq 0 0 0];
 %% Linerization
 
@@ -80,5 +80,89 @@ e_out = lsim(drone_linearized, elev_step, t);
 a_out = lsim(drone_linearized, aileron_step, t);
 r_out = lsim(drone_linearized, rudder_step, t);
 
+%% Plotting
 
+% Throttle Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, t_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, t_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, t_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, t_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Throttle Step Response');
+
+% Elevator Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, e_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, e_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, e_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, e_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Elevator Step Response');
+
+% Aileron Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, a_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, a_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, a_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, a_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Aileron Step Response');
+
+% Rudder Step Response
+figure, hold on;
+subplot(2,2,1);
+plot(t, r_out(:,1:3));
+legend('X','Y','Z');
+title('Position Delta');
+subplot(2,2,2);
+plot(t, r_out(:,4:6));
+legend('U','V','W');
+title('Velocity Delta');
+subplot(2,2,3);
+plot(t, r_out(:,7:9));
+legend('\phi','\theta','\psi');
+title('Rotation Delta');
+subplot(2,2,4);
+plot(t, r_out(:,10:12));
+legend('P','Q','R');
+title('Angular Speed Delta');
+
+sgtitle('Rudder Step Response');
 
