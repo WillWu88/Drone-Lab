@@ -32,7 +32,7 @@ c_t = [0.08 0.083 0.087 0.09 0.091 0.093]';
 
 % regressor matrix
 regressor = cat(2, ones(size(rev)), rev);
-k_estimate = (regressor' * regressor) \ regressor' * c_t;
+k_estimate = inv(regressor' * regressor) * regressor' * c_t;
 offset = k_estimate(1);
 slope = k_estimate(2);
 
@@ -56,13 +56,4 @@ motor_omega_eq = motor_n_eq * 2 * pi;
 % assuming a spinning cylinder about mid point
 prop_j = 1/12*prop_mass*prop_diam^2;
 
-%% Mixer Parameters
-
-% sums the motor speeds into T, L, M, N
-dynamics_matrix = [1 1 1 1;
-                1 -1 -1 1;
-                1 1 -1 -1;
-                -1 1 -1 1];
-            
-mixer_matrix = inv(dynamics_matrix);
-            
+%% Mixer
