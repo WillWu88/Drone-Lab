@@ -26,6 +26,8 @@ max_rev = max_rpm/60;
 air_density = 1.225; % kg/m^3
 c_p = 0.041; % power coefficient, assume flat, constant coeff of power
 
+
+
 %% Curve fit estimating thrust coefficient
 rev = [11000 19000 23000 25000 26500 29000]'/60;
 c_t = [0.08 0.083 0.087 0.09 0.091 0.093]';
@@ -65,4 +67,14 @@ dynamics_matrix = [1 1 1 1;
                 -1 1 -1 1];
             
 mixer_matrix = inv(dynamics_matrix);
+
+%% Lumped aerodynamics model
+
+K_c = 0.22;
+lumped_matrix = [K_c 0 0; 0 K_c 0; 0 0 0];
+
+%% Gyroscopic forces and moments
+
+motor_mix_vector = [1 -1 1 -1];
+m_b_a = [0;0;0];
             
