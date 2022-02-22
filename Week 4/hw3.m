@@ -46,6 +46,7 @@ figure, hold on;
 plot(rev, c_t, '*');
 plot(rev, regressor*k_estimate);
 legend('Real', 'Estimate');
+title('Attempted Curve Fit');
 
 %% Equilibrium Motor Speed, prop moment of inertia
 
@@ -78,3 +79,5 @@ lumped_matrix = [K_c 0 0; 0 K_c 0; 0 0 0];
 motor_mix_vector = [1 -1 1 -1];
 m_b_a = [0;0;0];
             
+%% Process Simulation
+
