@@ -1,0 +1,32 @@
+%% Homework 5
+% by Will Wu and Jackson Cox
+
+clear, clc, close all;
+
+%% Load All Data
+
+load('systemID_data_zip/bang_bang_A/motor_speed_dataA.mat');
+load('systemID_data_zip/bang_bang_A/sensor_dataA.mat');
+load('systemID_data_zip/bang_bang_A/sensor_state_dataA.mat');
+load('systemID_data_zip/bang_bang_A/state_est_dataA.mat');
+
+load('systemID_data_zip/bang_bang_E/motor_speed_dataE.mat');
+load('systemID_data_zip/bang_bang_E/sensor_dataE.mat');
+load('systemID_data_zip/bang_bang_E/sensor_state_dataE.mat');
+load('systemID_data_zip/bang_bang_E/state_est_dataE.mat');
+
+load('systemID_data_zip/bang_bang_R/motor_speed_dataR.mat');
+load('systemID_data_zip/bang_bang_R/sensor_dataR.mat');
+load('systemID_data_zip/bang_bang_R/sensor_state_dataR.mat');
+load('systemID_data_zip/bang_bang_R/state_est_dataR.mat');
+
+load('systemID_data_zip/bang_bang_T/motor_speed_dataT.mat');
+load('systemID_data_zip/bang_bang_T/sensor_dataT.mat');
+load('systemID_data_zip/bang_bang_T/sensor_state_dataT.mat');
+load('systemID_data_zip/bang_bang_T/state_est_dataT.mat');
+
+load('systemID_data_zip/chirp_motor1/chirp_data1.mat');
+load('systemID_data_zip/chirp_motor1/motor_speed_dataA.mat');
+load('systemID_data_zip/chirp_motor1/motor_speed_dataA.mat');
+load('systemID_data_zip/chirp_motor1/motor_speed_dataA.mat');
+
