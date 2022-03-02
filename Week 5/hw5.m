@@ -58,4 +58,3 @@ A = [0 1;0 0];
 syms c
 B = [0 c]';
 discrete_A = expm(A*T_s);
-discrete_B = conv(discrete_A, B);
