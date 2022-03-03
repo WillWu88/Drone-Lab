@@ -61,9 +61,9 @@ discrete_A = expm(A*T_s);
 discrete_B = [T_s^2/2; T_s];
 
 % Z_ned, vert speed, throttle
-figure, hold on;
-t = 0:T_s:4;
-plot(t', motor_speed_data(:,1));
+% figure, hold on;
+% t = 0:T_s:4;
+% plot(t', motor_speed_data(:,1));
 %legend('1','2','3','4');
 
 
@@ -71,14 +71,55 @@ plot(t', motor_speed_data(:,1));
 %             1, 1, -1, -1;
 %             1, -1, -1, 1;
 %             -1, -1, -1, -1];
-%Throttle Estimate
-T_in = sum(abs(motor_speed_data),2)/4;
-T_in = T_in(201:501,:);
-figure();
-plot(t(201:501),T_in);
 
-%Estimate C with regression
-y_T = diff(state_est_data(:,10));
-y_T = y_T(201:501,:);
-A_T = [zeros(size(y_T)) T_in];
-c_T = A_T\y_T;
+%% Z_{ned}, Vertical Speed and Throttle Estimate
+T_in = sum(abs(motor_speed_data),2)/4;
+dat_range_cond = (t>=1 & t<=2.5);
+
+W_in = state_est_data(:,10); % vertical speed from estimate
+Z_in = sensor_data(:,7);
+
+% identifying Bang-Bang thru plot
+figure();
+plot(t,T_in);
+xlabel('time'), ylabel('Throttle');
+title('Throttle Plot');
+
+% treating data
+T_treated = T_in(dat_range_cond,:);
+W_treated = -1*W_in(dat_range_cond);
+% inversing sign on vertical speed because positive down axis
+Z_treated = Z_in(dat_range_cond);
+
+% plotting treated data
+figure();
+plot(t(dat_range_cond),T_treated);
+xlabel('time'), ylabel('Throttle');
+title('Bang Bang Throttle');
+
+figure();
+plot(t(dat_range_cond),W_treated); 
+xlabel('time'), ylabel('Vertical Speed');
+title('Respective Vertical Speed');
+
+figure();
+plot(t(dat_range_cond),Z_treated);
+xlabel('time'), ylabel('Altitude');
+title('Respective Altitude');
+
+% Estimate C with regression
+y = [Z_treated W_treated];
+x = [T_treated*T_s^2*0.5 T_s*T_treated];
+
+
+C1 = y(:,1)\[zeros(size(x,1),1), x(:,1)];
+C2 = y(:,2)\[zeros(size(x,1),1), x(:,2)];
+
+% Estimate vs Real Data
+figure(), hold on;
+
+plot(t(dat_range_cond), W_treated);
+plot(t(dat_range_cond), T_s*T_treated*C2(2));
+legend('Real', 'Est');
+xlabel('Time'), ylabel('Vertical Speed');
+title('Vertical Speed: Real vs Estimate');

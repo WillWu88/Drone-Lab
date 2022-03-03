@@ -71,16 +71,30 @@ plot(t', motor_speed_data(:,1));
 %             1, 1, -1, -1;
 %             1, -1, -1, 1;
 %             -1, -1, -1, -1];
-%Throttle Estimate
-T_in = sum(abs(motor_speed_data),2)/4;
-T_in = T_in(201:501,:);
-figure();
-plot(t,T_in);
 
+%% Z_{ned}, Vertical Speed and Throttle Estimate
+T_in = sum(abs(motor_speed_data),2)/4;
+dat_range_cond = (t>=1 & t<=2.5);
+T_in = T_in(dat_range_cond,:);
+W_in = state_est_data(:,10); % vertical speed from estimate
+Z_in = sensor_data(:,7);
+
+figure();
+plot(t(dat_range_cond),T_in);
+xlabel('time'), ytitle('Throttle');
+title('Bang Bang Throttle');
+
+figure();
+plot(t(dat_range_cond),T_in);
+xlabel('time'), ytitle('Throttle');
+title('Respective Vertical Speed');
+
+figure();
+plot(t(dat_range_cond),T_in);
+xlabel('time'), ytitle('Throttle');
+title('Respective Altitude');
 %Estimate C with regression
-y_T = diff(state_est_data(:,10));
-y_T = y_T(201:501,:);
-A_T = [zeros(size(y_T)) T_in(1:end-1)];
-c_T = A_T\y_T;
-%motor_speed_data(:,1) + abs(motor_speed_data(:,2)) + ...
-   % motor_speed_data(:,3) + motor_speed_d
+
+Z_in = Z_in(dat_range_cond,:);
+A_T = [zeros(size(Z_in)) T_in];
+c_T = A_T\Z_in;
