@@ -87,7 +87,7 @@ title('Throttle Plot');
 
 % treating data
 T_treated = T_in(dat_range_cond,:);
-W_treated = diff(-1*W_in(dat_range_cond));
+W_treated = diff(W_in(dat_range_cond));% -T_s*T_in(dat_range_cond);
 % inversing sign on vertical speed because positive down axis
 Z_treated = diff(Z_in(dat_range_cond)); %needs fixing
 t_treated = t(dat_range_cond);
@@ -112,8 +112,10 @@ title('Respective Altitude');
 y = [Z_treated W_treated];
 x = [T_treated(1:end-1)*T_s^2*0.5 T_s*T_treated(1:end-1)];
 
-C1 = y(:,1)\[zeros(size(x,1),1), x(:,1)];
-C2 = y(:,2)\[zeros(size(x,1),1), x(:,2)];
+% C1 = y(:,1)\[zeros(size(x,1),1), x(:,1)];
+% C2 = y(:,2)\[zeros(size(x,1),1), x(:,2)];
+C1 = x\y(:,1);
+C2 = x\y(:,2);
 
 % Estimate vs Real Data
 figure(), hold on;
