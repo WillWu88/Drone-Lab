@@ -75,10 +75,12 @@ plot(t', motor_speed_data(:,1));
 T_in = sum(abs(motor_speed_data),2)/4;
 T_in = T_in(201:501,:);
 figure();
-plot(t(201:501),T_in);
+plot(t,T_in);
 
 %Estimate C with regression
 y_T = diff(state_est_data(:,10));
 y_T = y_T(201:501,:);
-A_T = [zeros(size(y_T)) T_in];
+A_T = [zeros(size(y_T)) T_in(1:end-1)];
 c_T = A_T\y_T;
+%motor_speed_data(:,1) + abs(motor_speed_data(:,2)) + ...
+   % motor_speed_data(:,3) + motor_speed_d
