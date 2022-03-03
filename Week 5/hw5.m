@@ -5,10 +5,10 @@ clear, clc, close all;
 
 %% Load All Data
 
-load('systemID_data_zip/bang_bang_A/motor_speed_dataA.mat');
-load('systemID_data_zip/bang_bang_A/sensor_dataA.mat');
-load('systemID_data_zip/bang_bang_A/sensor_state_dataA.mat');
-load('systemID_data_zip/bang_bang_A/state_est_dataA.mat');
+% load('systemID_data_zip/bang_bang_A/motor_speed_dataA.mat');
+% load('systemID_data_zip/bang_bang_A/sensor_dataA.mat');
+% load('systemID_data_zip/bang_bang_A/sensor_state_dataA.mat');
+% load('systemID_data_zip/bang_bang_A/state_est_dataA.mat');
 
 % load('systemID_data_zip/bang_bang_E/motor_speed_dataE.mat');
 % load('systemID_data_zip/bang_bang_E/sensor_dataE.mat');
@@ -20,10 +20,10 @@ load('systemID_data_zip/bang_bang_A/state_est_dataA.mat');
 % load('systemID_data_zip/bang_bang_R/sensor_state_dataR.mat');
 % load('systemID_data_zip/bang_bang_R/state_est_dataR.mat');
 % 
-% load('systemID_data_zip/bang_bang_T/motor_speed_dataT.mat');
-% load('systemID_data_zip/bang_bang_T/sensor_dataT.mat');
-% load('systemID_data_zip/bang_bang_T/sensor_state_dataT.mat');
-% load('systemID_data_zip/bang_bang_T/state_est_dataT.mat');
+load('systemID_data_zip/bang_bang_T/motor_speed_dataT.mat');
+load('systemID_data_zip/bang_bang_T/sensor_dataT.mat');
+load('systemID_data_zip/bang_bang_T/sensor_state_dataT.mat');
+load('systemID_data_zip/bang_bang_T/state_est_dataT.mat');
 
 % load('systemID_data_zip/chirp_motor1/chirp_data1.mat');
 % load('systemID_data_zip/chirp_motor1/motor_speed_data1.mat');
@@ -58,3 +58,16 @@ A = [0 1;0 0];
 syms c
 B = [0 c]';
 discrete_A = expm(A*T_s);
+discrete_B = [T_s^2/2; T_s];
+
+% Z_ned, vert speed, throttle
+figure, hold on;
+t = 0:T_s:4;
+plot(t', motor_speed_data(:,1));
+%legend('1','2','3','4');
+
+
+% mixer_mat = [1, -1, 1, -1;
+%             1, 1, -1, -1;
+%             1, -1, -1, 1;
+%             -1, -1, -1, -1];
