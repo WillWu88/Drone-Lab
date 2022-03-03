@@ -62,7 +62,7 @@ discrete_B = [T_s^2/2; T_s];
 
 % Z_ned, vert speed, throttle
 % figure, hold on;
-% t = 0:T_s:4;
+t = 0:T_s:4;
 % plot(t', motor_speed_data(:,1));
 %legend('1','2','3','4');
 
@@ -87,10 +87,11 @@ title('Throttle Plot');
 
 % treating data
 T_treated = T_in(dat_range_cond,:);
-W_treated = -1*W_in(dat_range_cond);
+W_treated = diff(-1*W_in(dat_range_cond));
 % inversing sign on vertical speed because positive down axis
-Z_treated = Z_in(dat_range_cond);
-
+Z_treated = diff(Z_in(dat_range_cond)); %needs fixing
+t_treated = t(dat_range_cond);
+t_treated = t_treated(1:end-1);
 % plotting treated data
 figure();
 plot(t(dat_range_cond),T_treated);
@@ -98,19 +99,18 @@ xlabel('time'), ylabel('Throttle');
 title('Bang Bang Throttle');
 
 figure();
-plot(t(dat_range_cond),W_treated); 
+plot(t_treated,W_treated); 
 xlabel('time'), ylabel('Vertical Speed');
 title('Respective Vertical Speed');
 
 figure();
-plot(t(dat_range_cond),Z_treated);
+plot(t_treated,Z_treated);
 xlabel('time'), ylabel('Altitude');
 title('Respective Altitude');
 
 % Estimate C with regression
 y = [Z_treated W_treated];
-x = [T_treated*T_s^2*0.5 T_s*T_treated];
-
+x = [T_treated(1:end-1)*T_s^2*0.5 T_s*T_treated(1:end-1)];
 
 C1 = y(:,1)\[zeros(size(x,1),1), x(:,1)];
 C2 = y(:,2)\[zeros(size(x,1),1), x(:,2)];
@@ -118,7 +118,7 @@ C2 = y(:,2)\[zeros(size(x,1),1), x(:,2)];
 % Estimate vs Real Data
 figure(), hold on;
 
-plot(t(dat_range_cond), W_treated);
+plot(t_treated, W_treated);
 plot(t(dat_range_cond), T_s*T_treated*C2(2));
 legend('Real', 'Est');
 xlabel('Time'), ylabel('Vertical Speed');
