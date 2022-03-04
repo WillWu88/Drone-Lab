@@ -121,15 +121,17 @@ C1 = x\y;
 %C2 = x\y(:,2);
 
 %% Estimate vs Real Data
+%Linear Simulation
+discrete_sys = ss(discrete_A, C1(2)*[T_s^2/2;T_s],[1 0; 0 1],[0;0]);
+ct_sys = ss(A, [0;C1(2)], eye(2), [0;0]);
+y_est = lsim(ct_sys, T_treated, [1:T_s:2.5], [sensor_data(t==1,7) state_est_data(t==1,10)]);
+
 figure(), hold on;
 
-plot(t, W_in);
+plot(t(dat_range_cond), W_in(dat_range_cond));
+plot(t(dat_range_cond),y_est(:,2));
 %plot(t(dat_range_cond), T_s*T_treated*C1(2));
-legend('Real', 'Est');
+
 xlabel('Time'), ylabel('Vertical Speed');
 title('Vertical Speed: Real vs Estimate');
-
-%Linear Simulation
-sys = ss(A, [0; C1(2)],[1 0; 0 1;],[0;0]);
-y_est = lsim(sys, T_in, t);
-plot(t,y_est(:,2));
+legend('Real', 'Est');
