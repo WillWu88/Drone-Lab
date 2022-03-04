@@ -132,4 +132,4 @@ title('Vertical Speed: Real vs Estimate');
 %Linear Simulation
 sys = ss(A, [0; C1(2)],[1 0; 0 1;],[0;0]);
 y_est = lsim(sys, T_in, t);
-plot(t,y_est(:,2));
+plot(t,y_est(;
