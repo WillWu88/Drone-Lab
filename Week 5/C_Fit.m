@@ -1,4 +1,4 @@
-%% Homework 5
+%% Homework 4
 % Part 1: State and Input Identification
 % by Will Wu and Jackson Cox
 
