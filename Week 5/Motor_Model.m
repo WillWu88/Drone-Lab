@@ -6,15 +6,15 @@ clear, clc, close all;
 
 %% Load All Data
 load('log_chirp_data/hover_voltage.mat');
-load('log_chirp_data/hover_voltage_trial2.mat');
-load('log_chirp_data/log_chirp_10Hz.mat');
-load('log_chirp_data/log_chirp_1Hz.mat');
-load('log_chirp_data/log_chirp_20Hz.mat');
-load('log_chirp_data/log_chirp_50Hz.mat');
-load('log_chirp_data/log_chirp_5Hz.mat');
+% load('log_chirp_data/hover_voltage_trial2.mat');
+% load('log_chirp_data/log_chirp_1Hz.mat');
+% load('log_chirp_data/log_chirp_5Hz.mat');
+% load('log_chirp_data/log_chirp_10Hz.mat');
+% load('log_chirp_data/log_chirp_20Hz.mat');
+% load('log_chirp_data/log_chirp_50Hz.mat');
 %% Constants
 
-T_s = 1/200;
+T_s = 1/1000;
 F_s = 1/T_s;
 
 A = [0 1;0 0];
@@ -56,7 +56,27 @@ p_est_l = 11;
 q_est_l = 12;
 r_est_l = 13;
 
+motor_speed_trim = 292.4758;
+
+t = 0:T_s:(length(motor_speed_data)/F_s);
+t = t(1:end-1)';
+
 %% Chirp 1
 
-% examine motor data
+% examine hover motor speed
+figure; hold on;
+plot(t, motor_speed_data(:,1));
+% legend('1','2','3','4');
+xlabel('Time'), ylabel('Motor Speed');
+title('Motor Speed');
 
+% examine battery voltage, state
+figure;
+plot(t,sensor_data(:,7));
+
+% volt_percent = double(volt_percent)/100;
+volt_V = double(volt_V);
+
+figure; hold on;
+plot(t,double(volt_percent) .* volt_V(1)/100, t, volt_V);
+legend('Times Percent', 'Actual');
