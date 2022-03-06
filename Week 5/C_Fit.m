@@ -1,4 +1,5 @@
 %% Homework 5
+% Part 1: State and Input Identification
 % by Will Wu and Jackson Cox
 
 clear, clc, close all;
@@ -45,7 +46,7 @@ clear, clc, close all;
 % load('systemID_data_zip/chirp_motor4/sensor_state_data4.mat');
 % load('systemID_data_zip/chirp_motor4/state_est_data4.mat');
 
-%% Part 1: Motor Speed Identification
+%% Constants
 
 T_s = 1/200;
 F_s = 1/T_s;
@@ -56,18 +57,16 @@ B = [0 c]';
 discrete_A = expm(A*T_s);
 discrete_B = [T_s^2/2; T_s];
 
-% Z_ned, vert speed, throttle
-% figure, hold on;
 t = 0:T_s:4;
-% plot(t', motor_speed_data(:,1));
-%legend('1','2','3','4');
 
-mixer_mat = [1, -1, 1, -1;
-            1, 1, -1, -1;
-            1, -1, -1, 1;
-            -1, -1, -1, -1];
+% mixer motor arithmetic
+% column 2 and 4 are sign-reversed since data from motor 2 & 4 are negative
+mixer_mat = [1, -1, 1, -1; %T
+            1, 1, -1, -1; %A
+            1, -1, -1, 1; %E
+            -1, -1, -1, -1]; %R
 
-%% Labels
+% Labels
 a_x_l = 1;
 a_y_l = 2;
 a_z_l = 3;
@@ -320,82 +319,6 @@ plot(t(dat_range_cond), P_in(dat_range_cond));
 plot(t(dat_range_cond),y_est_slice(:,2));
 xlabel('Time'), ylabel('Roll Rate');
 title('Roll Rate: Real vs Estimate (Bang Bang Input)');
-legend('Real', 'Est');
-
-%% Theta, q, Elevator
-load('systemID_data_zip/bang_bang_E/motor_speed_dataE.mat');
-load('systemID_data_zip/bang_bang_E/sensor_dataE.mat');
-load('systemID_data_zip/bang_bang_E/sensor_state_dataE.mat');
-load('systemID_data_zip/bang_bang_E/state_est_dataE.mat');
-
-E_in = (mixer_mat(3,:)*motor_speed_data'/4)';
-
-Theta_in = state_est_data(:,theta_l); % vertical speed from estimate
-Q_in = sensor_data(:,q_l);
-
-% identifying Bang-Bang thru plot
-figure();
-plot(t,E_in);
-xlabel('time'), ylabel('Elevator');
-title('Elevator Plot');
-
-% viable data range condition
-dat_range_cond = (t>=1 & t<=2);
-
-% time slice data
-E_slice = E_in(dat_range_cond,:);
-Q_treated = (diff(Q_in(dat_range_cond)))/T_s;
-Theta_treated = diff(Theta_in(dat_range_cond)); %needs fixing
-E_treated = detrend(E_slice,0);
-
-t_treated = t(dat_range_cond);
-t_treated = t_treated(1:end-1);
-
-% plotting treated data
-figure();
-plot(t(dat_range_cond),E_treated);
-xlabel('time'), ylabel('Elevator');
-title('Bang Bang Elevator');
-
-figure();
-plot(t_treated,Q_treated); 
-xlabel('time'), ylabel('Pitch Rate');
-title('Respective Pitch Rate');
-
-figure();
-plot(t_treated,Theta_treated);
-xlabel('time'), ylabel('Pitch Angle');
-title('Respective Pitch Angle');
-
-% Estimate C with regression
-output = Q_treated;
-regressor = [zeros(size(E_treated(1:end-1))) E_treated(1:end-1)];
-
-C_elevator = regressor\output;
-
-% Estimate vs Real Data Plots
-% Linear Simulation
-discrete_sys = ss(discrete_A, C_elevator(2)*[T_s^2/2;T_s],[1 0; 0 1],[0;0]);
-ct_sys = ss(A, [0;C_elevator(2)], eye(2), [0;0]);
-Total_e_treated = detrend(E_in, 0);
-y_est_total = lsim(ct_sys, Total_e_treated, [0:T_s:4], ...
-    [state_est_data(t==0,theta_l) sensor_data(t==0,q_l)]);
-y_est_slice = lsim(ct_sys, E_treated, [1:T_s:2], ...
-    [state_est_data(t==1,theta_l) sensor_data(t==1,q_l)]);
-
-
-figure(), hold on;
-plot(t, Q_in);
-plot(t,y_est_total (:,2));
-xlabel('Time'), ylabel('Pitch Rate');
-title('Pitch Rate: Real vs Estimate (Total Time Span)');
-legend('Real', 'Est');
-
-figure(), hold on;
-plot(t(dat_range_cond), Q_in(dat_range_cond));
-plot(t(dat_range_cond),y_est_slice(:,2));
-xlabel('Time'), ylabel('Pitch Rate');
-title('Pitch Rate: Real vs Estimate (Bang Bang Input)');
 legend('Real', 'Est');
 
 %% Psi, r, Rudder

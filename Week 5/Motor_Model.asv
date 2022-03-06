@@ -1,0 +1,92 @@
+%% Homework 5
+% Part 2: State and Input Identification
+% by Will Wu and Jackson Cox
+
+clear, clc, close all;
+
+%% Load All Data
+
+% load('systemID_data_zip/bang_bang_A/motor_speed_dataA.mat');
+% load('systemID_data_zip/bang_bang_A/sensor_dataA.mat');
+% load('systemID_data_zip/bang_bang_A/sensor_state_dataA.mat');
+% load('systemID_data_zip/bang_bang_A/state_est_dataA.mat');
+
+% load('systemID_data_zip/bang_bang_E/motor_speed_dataE.mat');
+% load('systemID_data_zip/bang_bang_E/sensor_dataE.mat');
+% load('systemID_data_zip/bang_bang_E/sensor_state_dataE.mat');
+% load('systemID_data_zip/bang_bang_E/state_est_dataE.mat');
+% 
+% load('systemID_data_zip/bang_bang_R/motor_speed_dataR.mat');
+% load('systemID_data_zip/bang_bang_R/sensor_dataR.mat');
+% load('systemID_data_zip/bang_bang_R/sensor_state_dataR.mat');
+% load('systemID_data_zip/bang_bang_R/state_est_dataR.mat');
+% 
+
+% load('systemID_data_zip/chirp_motor1/chirp_data1.mat');
+% load('systemID_data_zip/chirp_motor1/motor_speed_data1.mat');
+% load('systemID_data_zip/chirp_motor1/sensor_data1.mat');
+% load('systemID_data_zip/chirp_motor1/sensor_state_data1.mat');
+% load('systemID_data_zip/chirp_motor1/state_est_data1.mat');
+
+% load('systemID_data_zip/chirp_motor2/chirp_data2.mat');
+% load('systemID_data_zip/chirp_motor2/motor_speed_data2.mat');
+% load('systemID_data_zip/chirp_motor2/sensor_data2.mat');
+% load('systemID_data_zip/chirp_motor2/sensor_state_data2.mat');
+% load('systemID_data_zip/chirp_motor2/state_est_data2.mat');
+% 
+% load('systemID_data_zip/chirp_motor3/chirp_data3.mat');
+% load('systemID_data_zip/chirp_motor3/motor_speed_data3.mat');
+% load('systemID_data_zip/chirp_motor3/sensor_data3.mat');
+% load('systemID_data_zip/chirp_motor3/sensor_state_data3.mat');
+% load('systemID_data_zip/chirp_motor3/state_est_data3.mat');
+% 
+% load('systemID_data_zip/chirp_motor4/chirp_data4.mat');
+% load('systemID_data_zip/chirp_motor4/motor_speed_data4.mat');
+% load('systemID_data_zip/chirp_motor4/sensor_data4.mat');
+% load('systemID_data_zip/chirp_motor4/sensor_state_data4.mat');
+% load('systemID_data_zip/chirp_motor4/state_est_data4.mat');
+
+%% Constants
+
+T_s = 1/200;
+F_s = 1/T_s;
+
+A = [0 1;0 0];
+syms c
+B = [0 c]';
+discrete_A = expm(A*T_s);
+discrete_B = [T_s^2/2; T_s];
+
+t = 0:T_s:4;
+
+% mixer motor arithmetic
+% column 2 and 4 are sign-reversed since data from motor 2 & 4 are negative
+mixer_mat = [1, -1, 1, -1; %T
+            1, 1, -1, -1; %A
+            1, -1, -1, 1; %E
+            -1, -1, -1, -1]; %R
+
+% Labels
+a_x_l = 1;
+a_y_l = 2;
+a_z_l = 3;
+p_l = 4;
+q_l = 5;
+r_l = 6;
+h_l = 7;
+h_prs_l = 8;
+
+time_ind = 1;
+x_l = 2;
+y_l = 3;
+h_est_l = 4;
+psi_l = 5;
+theta_l = 6;
+phi_l = 7;
+u_l = 8;
+v_l = 9;
+w_l = 10;
+p_est_l = 11;
+q_est_l = 12;
+r_est_l = 13;
+
