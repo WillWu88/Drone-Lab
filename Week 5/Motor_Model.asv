@@ -14,7 +14,7 @@ load('log_chirp_data/hover_voltage.mat');
 % load('log_chirp_data/log_chirp_50Hz.mat');
 %% Constants
 
-T_s = 1/200;
+T_s = 1/1000;
 F_s = 1/T_s;
 
 A = [0 1;0 0];
@@ -58,10 +58,68 @@ r_est_l = 13;
 
 motor_speed_trim = 292.4758;
 
-t = 0:T_s:leng
+t = 0:T_s:(length(motor_speed_data)/F_s);
+t = t(1:end-1)';
 
 %% Chirp 1
 
-% examine hover data
+
+% examine hover motor speed
 figure; hold on;
-plot(motor_speed_data);
+plot(t, motor_speed_data(:,1));
+% legend('1','2','3','4');
+xlabel('Time'), ylabel('Motor Speed');
+title('Motor Speed');
+
+% examine battery voltage, state
+figure;
+plot(t,sensor_data(:,7));
+
+% volt_percent = double(volt_percent)/100;
+volt_V = double(volt_V);
+
+figure; hold on;
+plot(t,double(volt_percent) .* volt_V(1)/100, t, volt_V);
+legend('Times Percent', 'Actual');
+=======
+
+% examine motor data: Motor 1
+load('log_chirp_data/log_chirp_50Hz.mat');
+t_chirp = 0:Ts:22.995; %changed ranged to only second chirp because the 
+% first chirp does not correlate well with motor speeds
+range = (t_chirp>=10 & t_chirp<= 20);
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,1),0));
+plot(t_chirp(range),chirp_data(range,1));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 1: Commanded motor speed and actual motor speed over time");
+
+%Motor 2:
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,2),0));
+plot(t_chirp(range),chirp_data(range,2));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 2: Commanded motor speed and actual motor speed over time");
+
+%Motor 3:
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,3),0));
+plot(t_chirp(range),chirp_data(range,3));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 3: Commanded motor speed and actual motor speed over time");
+
+%Motor 4:
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,4),0));
+plot(t_chirp(range),chirp_data(range,4));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 4: Commanded motor speed and actual motor speed over time");
+>>>>>>> 5cfb6d6624fa54b4240a0dff712ac6ebcbc299d0

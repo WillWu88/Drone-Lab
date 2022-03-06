@@ -63,6 +63,7 @@ t = t(1:end-1)';
 
 %% Chirp 1
 
+
 % examine hover motor speed
 figure; hold on;
 plot(t, motor_speed_data(:,1));
@@ -80,3 +81,44 @@ volt_V = double(volt_V);
 figure; hold on;
 plot(t,double(volt_percent) .* volt_V(1)/100, t, volt_V);
 legend('Times Percent', 'Actual');
+
+% examine motor data: Motor 1
+load('log_chirp_data/log_chirp_50Hz.mat');
+t_chirp = 0:Ts:22.995; %changed ranged to only second chirp because the 
+% first chirp does not correlate well with motor speeds
+range = (t_chirp>=10 & t_chirp<= 20);
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,1),0));
+plot(t_chirp(range),chirp_data(range,1));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 1: Commanded motor speed and actual motor speed over time");
+
+%Motor 2:
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,2),0));
+plot(t_chirp(range),chirp_data(range,2));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 2: Commanded motor speed and actual motor speed over time");
+
+%Motor 3:
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,3),0));
+plot(t_chirp(range),chirp_data(range,3));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 3: Commanded motor speed and actual motor speed over time");
+
+%Motor 4:
+figure(), hold on;
+plot(t_chirp(range),detrend(motor_speed_data(range,4),0));
+plot(t_chirp(range),chirp_data(range,4));
+legend("n_a","n_c");
+xlabel("Time (s)");
+ylabel("Amplitude (Hz)");
+title("Motor 4: Commanded motor speed and actual motor speed over time");
+
