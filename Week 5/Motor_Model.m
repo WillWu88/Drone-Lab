@@ -144,7 +144,7 @@ title("Motor 1: Commanded motor speed and actual motor speed over time");
 
 %Motor 2:
 figure(), hold on;
-plot(t_chirp(range),detrend(motor_speed_data(range,2),0));
+plot(t_chirp(range),detrend(-1*motor_speed_data(range,2),0));
 plot(t_chirp(range),chirp_data(range,2));
 legend("n_a","n_c");
 xlabel("Time (s)");
@@ -171,7 +171,6 @@ title("Motor 4: Commanded motor speed and actual motor speed over time");
 
 %drone state to find chirp location
 figure(), hold on;
-figure(), hold on;
 plot(t_chirp(range),sensor_data(range,p_l));
 plot(t_chirp(range),sensor_data(range,q_l));
 plot(t_chirp(range),sensor_data(range,r_l));
@@ -179,12 +178,13 @@ plot(t_chirp(range),sensor_data(range,r_l));
 legend("p","q","r");
 % xlabel("Time (s)");
 % ylabel("Amplitude (Hz)");
-title("Motor 4: Commanded motor speed and actual motor speed over time");
+title("Sensor Data");
 
 %transfer function motor 1:
-input = iddata(double(detrend(motor_speed_data(range,1),0)),chirp_data(range,1),T_s);
+input = iddata(double(detrend(-1*motor_speed_data(range,1),0)),chirp_data(range,1),T_s);
 tf1 = tfest(input, 2,1);
 output = lsim(tf1, chirp_data((range),1),t_chirp(range));
+
 figure(), hold on;
 plot(t_chirp(range), chirp_data(range,1));
 plot(t_chirp(range), output);
@@ -195,7 +195,7 @@ tau_a = -1/tf1.Numerator(1);
 Td = 2/(tau_a*tf1.Numerator(2));
 tf_est = tf(1,[tau_a,1],'Inputdelay',Td);
 output12 = lsim(tf_est, chirp_data(range,1),t_chirp(range));
-plot(t_chirp(range), output2);
+plot(t_chirp(range), output12);
 legend("input", "output", "est tf");
 
 %transfer function motor 2:
@@ -216,7 +216,7 @@ plot(t_chirp(range), output22);
 legend("input", "output", "est tf");
 
 %transfer function motor 3:
-input = iddata(double(detrend(motor_speed_data(range,3),0)),chirp_data(range,3),T_s);
+input = iddata(double(detrend(-1*motor_speed_data(range,3),0)),chirp_data(range,3),T_s);
 tf3 = tfest(input, 2,1);
 output31 = lsim(tf3, chirp_data((range),3),t_chirp(range));
 figure(), hold on;
