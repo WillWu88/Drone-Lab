@@ -49,7 +49,7 @@ max_volt = 4.1; % max battery voltage, from the battery packaging
 load('log_chirp_data/hover_voltage.mat');
 % load('log_chirp_data/hover_voltage_trial2.mat');
 
-
+T_s = 1/200;
 t = 0:T_s:(length(motor_speed_data)/F_s);
 t = t(1:end-1)';
 
@@ -171,3 +171,33 @@ xlabel("Time (s)");
 ylabel("Amplitude (Hz)");
 title("Motor 4: Commanded motor speed and actual motor speed over time");
 
+%drone state to find chirp location
+figure(), hold on;
+figure(), hold on;
+plot(t_chirp(range),sensor_data(range,p_l));
+plot(t_chirp(range),sensor_data(range,q_l));
+plot(t_chirp(range),sensor_data(range,r_l));
+% plot(t_chirp(range),chirp_data(range,4));
+legend("p","q","r");
+% xlabel("Time (s)");
+% ylabel("Amplitude (Hz)");
+title("Motor 4: Commanded motor speed and actual motor speed over time");
+
+%transfer function motor 1:
+input = iddata(double(detrend(motor_speed_data(range,4),0)),chirp_data(range,4),T_s);
+tf1 = tfest(input, 2,1);
+output = lsim(tf1, chirp_data((range),1),t_chirp(range));
+figure(), hold on;
+plot(t_chirp(range), chirp_data(range,1));
+plot(t_chirp(range), output);
+
+%finding time delay and motor time constant using padea transformation
+tau_a = -1/tf1.Numerator(1);
+Td = 2/(tau_a*tf1.Numerator(2));
+tf_est = tf(1,[tau_a,1],'Inputdelay',Td);
+output2 = lsim(tf_est, chirp_data(range,1),t_chirp(range));
+plot(t_chirp(range), output2);
+legend("input", "output", "est tf");
+% d0 = tf1.Denominator(3);
+% d1 = tf1.Denominator(2);
+% T_delay = n0*d1/d0^2 - n1/d0;
