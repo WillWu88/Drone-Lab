@@ -137,37 +137,37 @@ range = (t_chirp>=10 & t_chirp<= 20);
 figure(), hold on;
 plot(t_chirp(range),detrend(motor_speed_data(range,1),0));
 plot(t_chirp(range),chirp_data(range,1));
-legend("n_a","n_c"); 
-xlabel("Time (s)");
-ylabel("Amplitude (Hz)");
-title("Motor 1: Commanded motor speed and actual motor speed over time");
+legend('n_a','n_c'); 
+xlabel('Time (s)');
+ylabel('Amplitude (Hz)');
+title('Motor 1: Commanded motor speed and actual motor speed over time');
 
 %Motor 2:
 figure(), hold on;
 plot(t_chirp(range),detrend(-1*motor_speed_data(range,2),0));
 plot(t_chirp(range),chirp_data(range,2));
-legend("n_a","n_c");
-xlabel("Time (s)");
-ylabel("Amplitude (Hz)");
-title("Motor 2: Commanded motor speed and actual motor speed over time");
+legend('n_a','n_c');
+xlabel('Time (s)');
+ylabel('Amplitude (Hz)');
+title('Motor 2: Commanded motor speed and actual motor speed over time');
 
 %Motor 3:
 figure(), hold on;
 plot(t_chirp(range),detrend(motor_speed_data(range,3),0));
 plot(t_chirp(range),chirp_data(range,3));
-legend("n_a","n_c");
-xlabel("Time (s)");
-ylabel("Amplitude (Hz)");
-title("Motor 3: Commanded motor speed and actual motor speed over time");
+legend('n_a','n_c');
+xlabel('Time (s)');
+ylabel('Amplitude (Hz)');
+title('Motor 3: Commanded motor speed and actual motor speed over time');
 
 %Motor 4:
 figure(), hold on;
 plot(t_chirp(range),detrend(motor_speed_data(range,4),0));
 plot(t_chirp(range),chirp_data(range,4));
-legend("n_a","n_c");
-xlabel("Time (s)");
-ylabel("Amplitude (Hz)");
-title("Motor 4: Commanded motor speed and actual motor speed over time");
+legend('n_a','n_c');
+xlabel('Time (s)');
+ylabel('Amplitude (Hz)');
+title('Motor 4: Commanded motor speed and actual motor speed over time');
 
 %drone state to find chirp location
 figure(), hold on;
@@ -175,10 +175,10 @@ plot(t_chirp(range),sensor_data(range,p_l));
 plot(t_chirp(range),sensor_data(range,q_l));
 plot(t_chirp(range),sensor_data(range,r_l));
 % plot(t_chirp(range),chirp_data(range,4));
-legend("p","q","r");
-% xlabel("Time (s)");
-% ylabel("Amplitude (Hz)");
-title("Sensor Data");
+legend('p','q','r');
+% xlabel('Time (s)');
+% ylabel('Amplitude (Hz)');
+title('Sensor Data');
 
 %transfer function motor 1:
 input = iddata(double(detrend(-1*motor_speed_data(range,1),0)),chirp_data(range,1),T_s);
@@ -188,7 +188,7 @@ output = lsim(tf1, chirp_data((range),1),t_chirp(range));
 figure(), hold on;
 plot(t_chirp(range), chirp_data(range,1));
 plot(t_chirp(range), output);
-title("Motor 1: Transfer Function Results");
+title('Motor 1: Transfer Function Results');
 
 %finding time delay and motor time constant using padea transformation
 tau_a = -1/tf1.Numerator(1);
@@ -196,7 +196,7 @@ Td = 2/(tau_a*tf1.Numerator(2));
 tf_est = tf(1,[tau_a,1],'Inputdelay',Td);
 output12 = lsim(tf_est, chirp_data(range,1),t_chirp(range));
 plot(t_chirp(range), output12);
-legend("input", "output", "est tf");
+legend('input', 'output', 'est tf');
 
 %transfer function motor 2:
 input = iddata(double(detrend(motor_speed_data(range,2),0)),chirp_data(range,2),T_s);
@@ -205,7 +205,7 @@ output21 = lsim(tf2, chirp_data((range),2),t_chirp(range));
 figure(), hold on;
 plot(t_chirp(range), chirp_data(range,2));
 plot(t_chirp(range), output21);
-title("Motor 2: Transfer Function Results");
+title('Motor 2: Transfer Function Results');
 
 %finding time delay and motor time constant using padea transformation
 tau_a2 = -1/tf2.Numerator(1);
@@ -213,7 +213,7 @@ Td2 = 2/(tau_a2*tf2.Numerator(2));
 tf_est2 = tf(1,[tau_a2,1],'Inputdelay',Td2);
 output22 = lsim(tf_est2, chirp_data(range,2),t_chirp(range));
 plot(t_chirp(range), output22);
-legend("input", "output", "est tf");
+legend('input', 'output', 'est tf');
 
 %transfer function motor 3:
 input = iddata(double(detrend(-1*motor_speed_data(range,3),0)),chirp_data(range,3),T_s);
@@ -222,7 +222,7 @@ output31 = lsim(tf3, chirp_data((range),3),t_chirp(range));
 figure(), hold on;
 plot(t_chirp(range), chirp_data(range,3));
 plot(t_chirp(range), output31);
-title("Motor 3: Transfer Function Results");
+title('Motor 3: Transfer Function Results');
 
 %finding time delay and motor time constant using padea transformation
 tau_a3 = -1/tf3.Numerator(1);
@@ -230,7 +230,7 @@ Td3 = 2/(tau_a3*tf3.Numerator(2));
 tf_est3 = tf(1,[tau_a3,1],'Inputdelay',Td3);
 output32 = lsim(tf_est3, chirp_data(range,3),t_chirp(range));
 plot(t_chirp(range), output32);
-legend("input", "output", "est tf");
+legend('input', 'output', 'est tf');
 
 %transfer function motor 4:
 input = iddata(double(detrend(motor_speed_data(range,4),0)),chirp_data(range,4),T_s);
@@ -239,7 +239,7 @@ output41 = lsim(tf4, chirp_data((range),4),t_chirp(range));
 figure(), hold on;
 plot(t_chirp(range), chirp_data(range,4));
 plot(t_chirp(range), output41);
-title("Motor 4: Transfer Function Results");
+title('Motor 4: Transfer Function Results');
 
 %finding time delay and motor time constant using padea transformation
 tau_a4 = -1/tf4.Numerator(1);
@@ -247,7 +247,4 @@ Td4 = 2/(tau_a4*tf4.Numerator(2));
 tf_est4 = tf(1,[tau_a4,1],'Inputdelay',Td4);
 output42 = lsim(tf_est4, chirp_data(range,4),t_chirp(range));
 plot(t_chirp(range), output42);
-legend("input", "output", "est tf");
-
-% Motor 3 Transfer Function blows up, but shares similar time delay and
-% motor time constant
+legend('input', 'output', 'est tf');
