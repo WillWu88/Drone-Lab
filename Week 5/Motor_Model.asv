@@ -53,7 +53,7 @@ motor_num = 4;
 air_density = 1.225;
 prop_diam = 0.066;
 k_estimate = [0.0706, 4.52e-5];
-eq_c_t = motor_speed_trim * k_estimate(2) + k_estimate(1);
+eq_c_t = motor_speed_trim * k_estimate(2) + k_estimate(1)) * air_density * prop_diam^2;
 
 %% Battery Model
 % Load Data
@@ -202,14 +202,9 @@ legend('p','q','r');
 % ylabel('Amplitude (Hz)');
 title('Filtered Sensor Data');
 
-% estimate motor speed based on thrust
-thrust_est = (y_fil(range,5) * m + m*g)/4;
-motor_speed_est = sqrt(thrust_est/(air_density * eq_c_t * prop_diam^4));
+motor_speed_est = (y_fil(range,5) * m)/4;
 figure(), hold on;
-plot(t_chirp(range), detrend(motor_speed_est,0));
-plot(t_chirp(range), chirp_data(range,1));
-legend('n_a', 'n_c');
-title('Estimated Motor Speed vs Commanded');
+plot(t_chirp(range), motor_speed_est);
 
 %%
 
