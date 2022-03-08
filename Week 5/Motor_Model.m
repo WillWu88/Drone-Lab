@@ -214,7 +214,7 @@ title('Estimated Motor Speed vs Commanded');
 %%
 
 %transfer function motor 1:
-input = iddata(double(detrend(-1*motor_speed_data(range,1),0)),chirp_data(range,1),T_s);
+input = iddata(double(detrend(motor_speed_est,0)),chirp_data(range,1),T_s);
 tf1 = tfest(input, 2,1);
 output = lsim(tf1, chirp_data((range),1),t_chirp(range));
 
@@ -225,7 +225,7 @@ title('Motor 1: Transfer Function Results');
 
 %finding time delay and motor time constant using padea transformation
 tau_a = -1/tf1.Numerator(1);
-Td = 2/(tau_a*tf1.Numerator(2));
+Td = 2/(tau_a*tf1.Denominator(3));
 tf_est = tf(1,[tau_a,1],'Inputdelay',Td);
 output12 = lsim(tf_est, chirp_data(range,1),t_chirp(range));
 plot(t_chirp(range), output12);
