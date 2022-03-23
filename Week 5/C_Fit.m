@@ -146,7 +146,7 @@ title('Respective Altitude');
 % Estimate C with regression
 % y = [Z_treated W_treated];
 output = W_treated;
-regressor = [zeros(size(T_treated(1:end-1))) T_treated(1:end-1)];
+regressor = [ones(size(T_treated(1:end-1))) T_treated(1:end-1)];
 
 C_throttle = regressor\output;
 
@@ -404,3 +404,6 @@ plot(t(dat_range_cond),y_est_slice(:,2));
 xlabel('Time'), ylabel('Yaw Rate');
 title('Yaw Rate: Real vs Estimate (Bang Bang Input)');
 legend('Real', 'Est');
+
+%% Produce subplots
+
