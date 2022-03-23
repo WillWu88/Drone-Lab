@@ -106,8 +106,14 @@ Z_in = sensor_data(:,h_l);
 % identifying Bang-Bang thru plot
 figure();
 plot(t,T_in);
-xlabel('time'), ylabel('Throttle');
-title('Throttle Plot');
+xlabel('time'), ylabel('Thrust');
+title('Thrust Plot');
+
+% identifying Respective relation
+figure();
+plot(t,W_in);
+xlabel('time'), ylabel('Vertical Speed');
+title('Vertical Speed Plot');
 
 % viable data range condition
 dat_range_cond = (t>=1 & t<=2.5);
