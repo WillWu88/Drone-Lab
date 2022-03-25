@@ -11,7 +11,9 @@ load('RSdata.mat');
 f_s = 200; %Hz
 T_s = 1/f_s;
 
-%% Plotting
+%% Parsing Collected Data 
+
+%might need to remove detrend here??
 PbZ = detrend(rt_PbZ.signals.values,0);
 p = rt_p.signals.values;
 q = rt_q.signals.values;
@@ -23,6 +25,7 @@ u = rt_u.signals.values;
 v = rt_v.signals.values;
 pressure = detrend(rt_pressure.signals.values,0);
 
+%% Plotting
 figure;
 histogram(PbZ);
 xlabel('mean'), ylabel('PbZ');
