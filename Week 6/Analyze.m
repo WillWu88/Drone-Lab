@@ -11,6 +11,8 @@ load('RSdata.mat');
 f_s = 200; %Hz
 T_s = 1/f_s;
 
+%Fudge Factor: (can be calculated from measuring optical flow)
+ff = .90;
 %% Parsing Collected Data 
 
 %might need to remove detrend here??
