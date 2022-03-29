@@ -79,7 +79,8 @@ figure; hold on;
 a_z = rt_a_z.signals.values;
 plot(rt_tout, a_z, rt_tout, detrend(a_z,0));
 legend('Org','Detrended');
-a_z = detrend(rt_a_z.signals.values,0);
+a_z = rt_a_z.signals.values + 9.8;
+title('Detrend Compared to Original')
 
 all_data = [PbZ p q r a_x a_y a_z u v pressure];
 all_mean = mean(all_data,1);
