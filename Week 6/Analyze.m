@@ -25,7 +25,7 @@ a_y = double(rt_a_y.signals.values);
 a_z = double(detrend(rt_a_z.signals.values,0));
 u = double(rt_u.signals.values);
 v = double(rt_v.signals.values);
-pressure = double(detrend(rt_pressure.signals.values,0));
+pressure = double(rt_pressure.signals.values - 98440);
 
 %% Plotting
 figure;
