@@ -16,16 +16,16 @@ ff = .90;
 %% Parsing Collected Data 
 
 %might need to remove detrend here??
-PbZ = detrend(rt_PbZ.signals.values,0);
-p = rt_p.signals.values;
-q = rt_q.signals.values;
-r = rt_r.signals.values;
-a_x = rt_a_x.signals.values;
-a_y = rt_a_y.signals.values;
-a_z = detrend(rt_a_z.signals.values,0);
-u = rt_u.signals.values;
-v = rt_v.signals.values;
-pressure = detrend(rt_pressure.signals.values,0);
+PbZ = double(detrend(rt_PbZ.signals.values,0));
+p = double(rt_p.signals.values);
+q = double(rt_q.signals.values);
+r = double(rt_r.signals.values);
+a_x = double(rt_a_x.signals.values);
+a_y = double(rt_a_y.signals.values);
+a_z = double(detrend(rt_a_z.signals.values,0));
+u = double(rt_u.signals.values);
+v = double(rt_v.signals.values);
+pressure = double(detrend(rt_pressure.signals.values,0));
 
 %% Plotting
 figure;
@@ -91,3 +91,15 @@ all_mean = mean(all_data,1);
 all_cov = cov(all_data);
 all_var = diag(all_cov);
 
+%% Load In Signal
+load('RSdata.mat');
+PbZ = rt_PbZ;
+p = rt_p;
+q = rt_q;
+r = rt_r;
+a_x = rt_a_x;
+a_y = rt_a_y;
+a_z = rt_a_z;
+u = rt_u;
+v = rt_v;
+pressure = rt_pressure;
