@@ -16,16 +16,16 @@ ff = .90;
 %% Parsing Collected Data 
 
 %might need to remove detrend here??
-PbZ = detrend(rt_PbZ.signals.values,0);
-p = rt_p.signals.values;
-q = rt_q.signals.values;
-r = rt_r.signals.values;
-a_x = rt_a_x.signals.values;
-a_y = rt_a_y.signals.values;
-a_z = detrend(rt_a_z.signals.values,0);
-u = rt_u.signals.values;
-v = rt_v.signals.values;
-pressure = detrend(rt_pressure.signals.values,0);
+PbZ = double(detrend(rt_PbZ.signals.values,0));
+p = double(rt_p.signals.values);
+q = double(rt_q.signals.values);
+r = double(rt_r.signals.values);
+a_x = double(rt_a_x.signals.values);
+a_y = double(rt_a_y.signals.values);
+a_z = double(detrend(rt_a_z.signals.values,0));
+u = double(rt_u.signals.values);
+v = double(rt_v.signals.values);
+pressure = double(rt_pressure.signals.values - 98440);
 
 %% Plotting
 figure;
@@ -84,7 +84,8 @@ figure; hold on;
 a_z = rt_a_z.signals.values;
 plot(rt_tout, a_z, rt_tout, detrend(a_z,0));
 legend('Org','Detrended');
-a_z = detrend(rt_a_z.signals.values,0);
+a_z = rt_a_z.signals.values + 9.8;
+title('Detrend Compared to Original')
 
 all_data = [PbZ p q r a_x a_y a_z u v pressure];
 all_mean = mean(all_data,1);
@@ -107,4 +108,16 @@ ground_alt = mean(z_hypsometric(ground_pressure));
 
 
 %% Function declarations
-
+% %% Load In Signal
+% load('RSdata.mat');
+% PbZ = rt_PbZ;
+% p = rt_p;
+% q = rt_q;
+% r = rt_r;
+% a_x = rt_a_x;
+% a_y = rt_a_y;
+% a_z = rt_a_z;
+% u = rt_u;
+% v = rt_v;
+% pressure = rt_pressure;
+% >>>>>>> 536f80da730b07eaa63d5704a9f50d1d7b7577c4
