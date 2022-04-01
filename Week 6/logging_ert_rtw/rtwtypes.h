@@ -7,9 +7,9 @@
  *
  * Code generation for model "logging".
  *
- * Model version              : 2.1
+ * Model version              : 2.2
  * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Tue Mar 22 19:37:25 2022
+ * C source code generated on : Thu Mar 31 18:58:26 2022
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
