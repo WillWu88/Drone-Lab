@@ -26,7 +26,7 @@ f_s = 200; %Hz
 T_s = 1/f_s;
 
 %Fudge Factor: (can be calculated from measuring optical flow)
-ff = .90;
+ff = 1.1;
 %% Parsing Collected Data 
 
 %might need to remove detrend here??
@@ -107,7 +107,7 @@ all_cov = cov(all_data);
 all_var = diag(all_cov);
 
 %% Load In Signal
-load('Roll.mat');
+load('Pitch.mat');
 PbZ = rt_PbZ;
 p = rt_p;
 q = rt_q;
@@ -118,7 +118,7 @@ a_z = rt_a_z;
 u = rt_u;
 v = rt_v;
 pressure = rt_pressure;
-
+mean_pressure = mean(pressure.signals.values);
 %% Function declarations
 
 
