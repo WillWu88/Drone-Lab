@@ -2,6 +2,20 @@
 % by Jackson Cox, Will Wu
 clear, clc, close all;
 
+%% Extract ground pressure
+load('Ground.mat');
+ground_pressure = rt_pressure.signals.values; % pascals
+g = 9.8; % acceleration due to gravity m/s^2
+M = 0.0289644; % molar mass of air in kg/mol
+R = 8.31432; % universal gas constant Nm/mol/k
+p0 = 101325; % Pa standard pressure
+
+T =288.15;  % Assumed temperature in kelvin
+K =-g*M/R/T;
+z_hypsometric =@(P) 1/K.*log(P./p0);
+ground_alt = mean(z_hypsometric(ground_pressure));
+
+
 %% load files
 
 load('Stationary.mat');
@@ -92,32 +106,19 @@ all_mean = mean(all_data,1);
 all_cov = cov(all_data);
 all_var = diag(all_cov);
 
-%% Extract ground pressure
-load('Ground.mat');
-ground_pressure = rt_pressure.signals.values; % pascals
-g = 9.8; % acceleration due to gravity m/s^2
-M = 0.0289644; % molar mass of air in kg/mol
-R = 8.31432; % universal gas constant Nm/mol/k
-p0 = 101325; % Pa standard pressure
-
-T =288.15;  % Assumed temperature in kelvin
-K =-g*M/R/T;
-z_hypsometric =@(P) 1/K.*log(P./p0);
-ground_alt = mean(z_hypsometric(ground_pressure));
-
-
+%% Load In Signal
+load('Roll.mat');
+PbZ = rt_PbZ;
+p = rt_p;
+q = rt_q;
+r = rt_r;
+a_x = rt_a_x;
+a_y = rt_a_y;
+a_z = rt_a_z;
+u = rt_u;
+v = rt_v;
+pressure = rt_pressure;
 
 %% Function declarations
-% %% Load In Signal
-% load('RSdata.mat');
-% PbZ = rt_PbZ;
-% p = rt_p;
-% q = rt_q;
-% r = rt_r;
-% a_x = rt_a_x;
-% a_y = rt_a_y;
-% a_z = rt_a_z;
-% u = rt_u;
-% v = rt_v;
-% pressure = rt_pressure;
-% >>>>>>> 536f80da730b07eaa63d5704a9f50d1d7b7577c4
+
+
