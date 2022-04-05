@@ -1,4 +1,4 @@
-%% Homework 5
+%% Homework 6
 % by Jackson Cox, Will Wu
 clear, clc, close all;
 
