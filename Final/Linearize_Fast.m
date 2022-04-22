@@ -97,3 +97,12 @@ tf_pn = simplify(eye(2) * inv(s*eye(2) - A_dt_PN) * B_dt_PN);
 [K_v, S] = lqr(A_dt_v, B_dt_v, [1 0 0; 0 50 0; 0 0 1], 1);
 [K_u, S] = lqr(A_dt_u, B_dt_u, [1 0 0; 0 1 0; 0 0 50], 1);
 [K_psi, S] = lqr(A_dt_psi, B_dt_psi, [50 0; 0 1], 1);
+%% Linearizing Mixer Matrix
+syms a b c d
+v_motor = (1/4)*[1/a 1/b 1/c -1/d; 
+           1/a -1/b 1/c 1/d; 
+           1/a -1/b -1/c -1/d; 
+           1/a 1/b -1/c 1/d;]*u_vec;
+n = sqrt(v_motor);
+n_lin = jacobian(n, u_vec);
+M = double(subs(n_lin, [u_vec; a; b; c; d;], [.66708; 0; 0; 0;1.86e-6;8.856e-8;8.856e-8;9.766e-9]));
