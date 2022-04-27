@@ -1,6 +1,6 @@
 %% ESE-4481 HW 7
 % By Will Wu, Jackson Cox
-clear, clc, close all;
+clc, close all;
 %% Constant Declaration
 m = 0.068;
 Jxx = 0.69e-4;
@@ -52,4 +52,3 @@ lin_a_eq = double(subs(jacob_a, [x control], [x_eq u_eq]));
 lin_b_eq = double(subs(jacob_b, [x control], [x_eq u_eq]));
 c = eye(length(x), length(x));
 
-%% linearize equations
