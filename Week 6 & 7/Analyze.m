@@ -108,7 +108,7 @@ all_var = diag(all_cov);
 
 %% Load In Signal
 close all;
-load('Stationary.mat');
+load('Up-Down.mat');
 PbZ = rt_PbZ;
 p = rt_p;
 q = rt_q;
