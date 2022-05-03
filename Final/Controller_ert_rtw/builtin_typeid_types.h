@@ -7,9 +7,9 @@
  *
  * Code generation for model "Controller".
  *
- * Model version              : 2.19
- * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Thu Apr 28 18:48:22 2022
+ * Model version              : 4.2
+ * Simulink Coder version : 9.7 (R2022a) 13-Nov-2021
+ * C source code generated on : Tue May  3 09:59:24 2022
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -41,6 +41,16 @@ typedef enum {
 
 /* Enumeration for MAT-file logging code */
 typedef int_T DTypeId;
+
+/* Enumeration of pre-defined data types */
+typedef enum {
+  SS_FCN_CALL = 9,
+  SS_INTEGER = 10,
+  SS_POINTER = 11,
+  SS_INTERNAL_DTYPE2 = 12,
+  SS_TIMER_UINT32_PAIR = 13,
+  SS_CONNECTION_TYPE = 14
+} PreDefinedDTypeId;
 
 #endif                                 /* BUILTIN_TYPEID_TYPES */
 #endif                                 /* BUILTIN_TYPEID_TYPES_H */

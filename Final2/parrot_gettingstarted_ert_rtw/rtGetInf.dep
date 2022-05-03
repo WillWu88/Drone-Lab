@@ -1,0 +1,14 @@
+rtGetInf.o rtGetInf.o: \
+ C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_ert_rtw/rtGetInf.c \
+ C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_ert_rtw/rtwtypes.h \
+ C:/PROGRA~1/MATLAB/R2022a/extern/include/tmwtypes.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_ert_rtw/rtGetInf.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_ert_rtw/rt_nonfinite.h
+
+C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_ert_rtw/rtwtypes.h:
+
+C:/PROGRA~1/MATLAB/R2022a/extern/include/tmwtypes.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_ert_rtw/rtGetInf.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_ert_rtw/rt_nonfinite.h:

@@ -1,0 +1,17 @@
+rt_nonfinite.o rt_nonfinite.o: \
+ C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rt_nonfinite.c \
+ C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rtGetNaN.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rtwtypes.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final/tmwtypes.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rtGetInf.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rt_nonfinite.h
+
+C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rtGetNaN.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rtwtypes.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final/tmwtypes.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rtGetInf.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final/parrot_gettingstarted_ert_rtw/rt_nonfinite.h:

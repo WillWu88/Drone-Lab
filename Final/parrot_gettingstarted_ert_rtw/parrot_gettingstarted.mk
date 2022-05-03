@@ -2,7 +2,7 @@
 ## Makefile generated for component 'parrot_gettingstarted'. 
 ## 
 ## Makefile     : parrot_gettingstarted.mk
-## Generated on : Thu Apr 28 18:47:03 2022
+## Generated on : Tue May 03 11:10:34 2022
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/parrot_gettingstarted.so
 ## Product type : executable
 ## 
@@ -18,8 +18,8 @@
 
 PRODUCT_NAME              = parrot_gettingstarted
 MAKEFILE                  = parrot_gettingstarted.mk
-MATLAB_ROOT               = C:/PROGRA~1/MATLAB/R2021a
-MATLAB_BIN                = C:/PROGRA~1/MATLAB/R2021a/bin
+MATLAB_ROOT               = C:/PROGRA~1/MATLAB/R2022a
+MATLAB_BIN                = C:/PROGRA~1/MATLAB/R2022a/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/win64
 START_DIR                 = C:/Users/Willi/Desktop/Drone-Lab/Final
 SOLVER                    = 
@@ -37,7 +37,7 @@ CPP_STANDARD_OPTS         =
 
 # Toolchain Name:          Sourcery G++ Lite GNU Toolchain for Drones
 # Supported Version(s):    
-# ToolchainInfo Version:   2021a
+# ToolchainInfo Version:   2022a
 # Specification Revision:  1.0
 # 
 #-------------------------------------------
@@ -165,7 +165,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/parrot_gettingstarted_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2021a/toolbox/target/SUPPOR~1/parrot/include -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils
+INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/parrot_gettingstarted_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022a/toolbox/target/SUPPOR~1/parrot/include -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -177,7 +177,7 @@ DEFINES_ = -D__MW_TARGET_USE_HARDWARE_RESOURCES_H__ -DMW_HAS_OPTICAL_FLOW_LOGIC
 DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DONESTEPFCN=1 -DTERMFCN=1 -DMULTI_INSTANCE_CODE=0 -DINTEGER_CODE=0 -DMT=0
 DEFINES_CUSTOM = 
 DEFINES_OPTS = -DTID01EQ=0
-DEFINES_SKIPFORSIL = -DXCP_CUSTOM_PLATFORM -D__linux__ -DDELOS -DDELOS_EDU -DEXTMODE_DISABLETESTING -DEXTMODE_STATIC_SIZE=16384 -DEXTMODE_DISABLE_ARGS_PROCESSING=1 -DPARROT_LINUX_COMM -DSTACK_SIZE=64 -DRT -DSTOP_TIME=100 -DMAMBO=1
+DEFINES_SKIPFORSIL = -DXCP_CUSTOM_PLATFORM -D__linux__ -DDELOS -DDELOS_EDU -DEXTMODE_DISABLETESTING -DEXTMODE_STATIC_SIZE=16384 -DEXTMODE_DISABLE_ARGS_PROCESSING=1 -DPARROT_LINUX_COMM -DSTACK_SIZE=64 -DRT -DMATFILE_LOGGING=1 -DSTOP_TIME=100 -DMAMBO=1
 DEFINES_STANDARD = -DMODEL=parrot_gettingstarted -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0
 
 DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(DEFINES_SKIPFORSIL) $(DEFINES_STANDARD)
@@ -186,7 +186,7 @@ DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/parrot_gettingstarted_ert_rtw/parrot_gettingstarted.c $(START_DIR)/parrot_gettingstarted_ert_rtw/parrot_gettingstarted_data.c C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/rsedu_control.c C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/rsedu_of.c C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/rsedu_vis.c C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/ptimer.c C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/controlCommand.c C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/mw_extrathreads.c
+SRCS = $(MATLAB_ROOT)/rtw/c/src/rt_logging.c $(START_DIR)/parrot_gettingstarted_ert_rtw/parrot_gettingstarted.c $(START_DIR)/parrot_gettingstarted_ert_rtw/parrot_gettingstarted_data.c $(START_DIR)/parrot_gettingstarted_ert_rtw/rtGetInf.c $(START_DIR)/parrot_gettingstarted_ert_rtw/rtGetNaN.c $(START_DIR)/parrot_gettingstarted_ert_rtw/rt_nonfinite.c C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/rsedu_control.c C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/rsedu_of.c C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/rsedu_vis.c C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/ptimer.c C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/controlCommand.c C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/mw_extrathreads.c
 
 ALL_SRCS = $(SRCS)
 
@@ -194,7 +194,7 @@ ALL_SRCS = $(SRCS)
 ## OBJECTS
 ###########################################################################
 
-OBJS = parrot_gettingstarted.o parrot_gettingstarted_data.o rsedu_control.o rsedu_of.o rsedu_vis.o ptimer.o controlCommand.o mw_extrathreads.o
+OBJS = rt_logging.o parrot_gettingstarted.o parrot_gettingstarted_data.o rtGetInf.o rtGetNaN.o rt_nonfinite.o rsedu_control.o rsedu_of.o rsedu_vis.o ptimer.o controlCommand.o mw_extrathreads.o
 
 ALL_OBJS = $(OBJS)
 
@@ -388,6 +388,10 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS)
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
+rt_logging.o : $(MATLAB_ROOT)/rtw/c/src/rt_logging.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
 parrot_gettingstarted.o : $(START_DIR)/parrot_gettingstarted_ert_rtw/parrot_gettingstarted.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
@@ -396,27 +400,39 @@ parrot_gettingstarted_data.o : $(START_DIR)/parrot_gettingstarted_ert_rtw/parrot
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-rsedu_control.o : C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/rsedu_control.c
+rtGetInf.o : $(START_DIR)/parrot_gettingstarted_ert_rtw/rtGetInf.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-rsedu_of.o : C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/rsedu_of.c
+rtGetNaN.o : $(START_DIR)/parrot_gettingstarted_ert_rtw/rtGetNaN.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-rsedu_vis.o : C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/rsedu_vis.c
+rt_nonfinite.o : $(START_DIR)/parrot_gettingstarted_ert_rtw/rt_nonfinite.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-ptimer.o : C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/ptimer.c
+rsedu_control.o : C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/rsedu_control.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-controlCommand.o : C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/controlCommand.c
+rsedu_of.o : C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/rsedu_of.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-mw_extrathreads.o : C:/ProgramData/MATLAB/SupportPackages/R2021a/toolbox/target/supportpackages/parrot/src/mw_extrathreads.c
+rsedu_vis.o : C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/rsedu_vis.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+ptimer.o : C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/ptimer.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+controlCommand.o : C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/controlCommand.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+mw_extrathreads.o : C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/mw_extrathreads.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 

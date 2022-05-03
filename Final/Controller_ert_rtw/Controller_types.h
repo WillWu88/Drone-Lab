@@ -7,9 +7,9 @@
  *
  * Code generation for model "Controller".
  *
- * Model version              : 2.19
- * Simulink Coder version : 9.5 (R2021a) 14-Nov-2020
- * C source code generated on : Thu Apr 28 18:48:22 2022
+ * Model version              : 4.2
+ * Simulink Coder version : 9.7 (R2022a) 13-Nov-2021
+ * C source code generated on : Tue May  3 09:59:24 2022
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,8 +21,6 @@
 #ifndef RTW_HEADER_Controller_types_h_
 #define RTW_HEADER_Controller_types_h_
 #include "rtwtypes.h"
-#include "builtin_typeid_types.h"
-#include "multiword_types.h"
 #include "HAL.h"
 
 /* Model Code Variants */
@@ -60,12 +58,6 @@ typedef struct {
 } SensorsBus;
 
 #endif
-
-/* Parameters for system: '<S90>/MeasurementUpdate' */
-typedef struct P_MeasurementUpdate_Controlle_T_ P_MeasurementUpdate_Controlle_T;
-
-/* Parameters for system: '<S97>/Enabled Subsystem' */
-typedef struct P_EnabledSubsystem_Controller_T_ P_EnabledSubsystem_Controller_T;
 
 /* Parameters (default storage) */
 typedef struct P_Controller_T_ P_Controller_T;

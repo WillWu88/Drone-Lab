@@ -45,19 +45,15 @@ int main(void)
   rtmSetErrorStatus(Controller_M, 0);
   Controller_initialize();
   ;
-  runModel =
-    rtmGetErrorStatus(Controller_M) == (NULL);
+  runModel = rtmGetErrorStatus(Controller_M) == (NULL);
   ;
   while (runModel) {
     rt_OneStep();
-    stopRequested = !(
-                      rtmGetErrorStatus(Controller_M) == (NULL));
+    stopRequested = !(rtmGetErrorStatus(Controller_M) == (NULL));
     runModel = !(stopRequested);
   }
 
   rt_StopDataLogging(MATFILE, Controller_M->rtwLogInfo);
-
-  /* Disable rt_OneStep() here */
 
   /* Terminate model */
   Controller_terminate();

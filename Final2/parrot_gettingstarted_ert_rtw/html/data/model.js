@@ -1,0 +1,1 @@
+var modelInfo = {model:"parrot_gettingstarted"};var modelHierarchy=[{model:"parrot_gettingstarted",relativePath:"_internal.html",parent:"null"},];
