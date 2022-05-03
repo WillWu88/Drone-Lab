@@ -105,13 +105,13 @@ v_motor = (1/4)*[1/a 1/b 1/c -1/d;
            1/a 1/b -1/c 1/d;]*u_vec;
 n = sqrt(v_motor);
 n_lin = jacobian(n, u_vec);
-Mixer = double(subs(n_lin, [u_vec; a; b; c; d;], [.66708; 0; 0; 0;1.86e-6;8.856e-8;8.856e-8;9.766e-9]));
+Mixer =  double(subs(n_lin, [u_vec; a; b; c; d;], [.66708; 0; 0; 0;(1.86e-6);(8.856e-8);(8.856e-8);(9.766e-9)]));
 
 %% Run param set, lqr calc
 load('cov_data.mat');
 Param_set;
 
-g = 9.8; % acceleration due to gravity m/s^2
+g = 9.81; % acceleration due to gravity m/s^2
 M = 0.0289644; % molar mass of air in kg/mol
 R = 8.31432; % universal gas constant Nm/mol/k
 p0 = 101325; % Pa standard pressure
