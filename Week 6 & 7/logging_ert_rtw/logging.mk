@@ -2,7 +2,7 @@
 ## Makefile generated for component 'logging'. 
 ## 
 ## Makefile     : logging.mk
-## Generated on : Tue Mar 22 19:30:23 2022
+## Generated on : Wed Apr 27 21:03:49 2022
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/logging.so
 ## Product type : executable
 ## 
@@ -21,7 +21,7 @@ MAKEFILE                  = logging.mk
 MATLAB_ROOT               = C:/PROGRA~1/MATLAB/R2021a
 MATLAB_BIN                = C:/PROGRA~1/MATLAB/R2021a/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/win64
-START_DIR                 = C:/Users/Willi/Desktop/DRONEL~1/WEEK6~1
+START_DIR                 = C:/Users/Willi/Desktop/DRONE-~1/WEEK6&~1
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0
