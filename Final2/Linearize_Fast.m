@@ -1,8 +1,8 @@
 % Jackson Cox
 % Assignment 7
 
-clc, clear; close all;
-
+clc; close all;
+T_s = 1/200;
 %symbolic variables
 syms phi theta psi;
 %rotation matrices
@@ -49,9 +49,9 @@ ic_u = [0.6522;0;0;0];
 f_x = jacobian(f, x_vec);
 f_u = jacobian(f,u_vec);
 A = subs(f_x,x_vec, x0);
-A = subs(A, u_vec, ic_u);
+A = simplify(subs(A, u_vec, ic_u));
 B = subs(f_u, x_vec, x0);
-B = subs(B, u_vec, ic_u);
+B = simplify(subs(B, u_vec, ic_u));
 % add step where we plug in constants
 A = subs(A, [g D ct rho m Jp],[9.81 2*.066 .08 1.225 .068 1.089*10^(-6)]);
 B = subs(B, [m Jxx Jyy Jzz], [.068 .69e-4 .775e-4 1.5e-4]);
@@ -78,9 +78,10 @@ fun = expm(A_dT_PD.*t);
 Thrust_B = double(int(fun, 0, 1/200))*B_dT_PD;
 
 % V Phi P (Aileron) need to be fixed so they aren't zero
-Aileron_A = expm(A_dt_v(1:2,1:2) .* (1/200));
-fun2 = expm (A_dt_v(1:2,1:2).*t);
-Aileron_B = double(int(fun2,0,1/200))*eye(2);
+% Aileron_A = expm(A_dt_v(1:2,1:2) .* (1/200));
+% fun2 = expm (A_dt_v(1:2,1:2).*t);
+% Aileron_B = double(int(fun2,0,1/200))*eye(2);
+
 % Aileron_B = Aileron_B(1:2);
 % U theta q (Elevator) needs to be fixed
 Elevator_A = expm(A_dt_u(1:2,1:2) .* (1/200));

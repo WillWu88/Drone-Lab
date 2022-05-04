@@ -15,6 +15,14 @@ K =-g*M/R/T;
 z_hypsometric =@(P) 1/K.*log(P./p0);
 ground_alt = mean(z_hypsometric(ground_pressure));
 
+k_c = 0.22;
+Aileron_A = [-9.81*k_c 9.81;0 0];
+Aileron_B = [0;1];
+v_phi = ss(Aileron_A, Aileron_B, [1 0], 0);
+v_phi_dt = c2d(v_phi, T_s);
+q_phi_dt = [all_cov(6,6) 0; 0 all_cov(2,2)]*T_s;
+r_phi_dt = [all_cov(9,9) 0;0 all_cov(6,6)*all_cov(7,7)];
+q_scale = 1;
 
 %% load files
 
@@ -108,7 +116,7 @@ all_var = diag(all_cov);
 
 %% Load In Signal
 close all;
-load('Up-Down.mat');
+load('Stationary.mat');
 PbZ = rt_PbZ;
 p = rt_p;
 q = rt_q;
