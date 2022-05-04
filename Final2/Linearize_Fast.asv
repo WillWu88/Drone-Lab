@@ -74,17 +74,20 @@ B_dt_PN = double([A(1,8) A(1,11);A(2,8) A(2,11)]);
 % Throttle, PD, and w 
 syms t
 Thrust_A = expm(A_dT_PD .* (1/200));
-fun = exp(Thrust_A.*t);
+fun = expm(A_dT_PD.*t);
 Thrust_B = double(int(fun, 0, 1/200))*B_dT_PD;
 
 % V Phi P (Aileron) need to be fixed so they aren't zero
 Aileron_A = expm(A_dt_v(1:2,1:2) .* (1/200));
-fun2 = exp(Aileron_A.*t);
-Aileron_B = double(int(fun2,0,1/200))*B_dt_v(1:2);
+fun2 = expm (A_dt_v(1:2,1:2).*t);
+Aileron_B = double(int(fun2,0,1/200))*eye(2);
+% Aileron_B = Aileron_B(1:2);
 % U theta q (Elevator) needs to be fixed
 Elevator_A = expm(A_dt_u(1:2,1:2) .* (1/200));
-fun3 = exp(Elevator_A .*t);
-Elevator_B = double(int(fun3,0,1/200))*B_dt_u(1:2);
+fun3 = expm(A_dt_u(1:2,1:2).*t);
+Elevator_B = double(int(fun3,0,1/200))*eye(2);
+% Elevator_A = Elevator_A(1:2,1:2);
+% Elevator_B = Elevator_B(1:2);
 %% Controllability and Observability of Decoupled Systems 
 syms s
 % PD w
@@ -108,10 +111,10 @@ obsv_pn = rref(ctrb(A_dt_PN, eye(2)));
 tf_pn = simplify(eye(2) * inv(s*eye(2) - A_dt_PN) * B_dt_PN);
 
 %% Calculating LQR
-[K_PD, S] = lqr(A_dT_PD, B_dT_PD, [50 0; 0 1], 1);
-[K_v, S] = lqr(A_dt_v, B_dt_v, [1 0 0; 0 50 0; 0 0 1], 1);
-[K_u, S] = lqr(A_dt_u, B_dt_u, [1 0 0; 0 1 0; 0 0 50], 1);
-[K_psi, S] = lqr(A_dt_psi, B_dt_psi, [50 0; 0 1], 1);
+[K_PD, S] = lqr(A_dT_PD, B_dT_PD, [50 0; 0 1], 1000);
+[K_v, S] = lqr(A_dt_v, B_dt_v, [1 0 0; 0 50 0; 0 0 1], 1000);
+[K_u, S] = lqr(A_dt_u, B_dt_u, [1 0 0; 0 1 0; 0 0 50], 100);
+[K_psi, S] = lqr(A_dt_psi, B_dt_psi, [50 0; 0 1], 100);
 %% Linearizing Mixer Matrix
 syms a b c d
 v_motor = (1/4)*[1/a 1/b 1/c -1/d; 

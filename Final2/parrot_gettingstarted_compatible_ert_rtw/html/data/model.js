@@ -1,0 +1,1 @@
+var modelInfo = {model:"parrot_gettingstarted_compatible"};var modelHierarchy=[{model:"parrot_gettingstarted_compatible",relativePath:"_internal.html",parent:"null"},];

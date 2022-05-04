@@ -1,0 +1,1 @@
+var reportPages = [["Summary","parrot_gettingstarted_compatible_survey.html"],["Subsystem Report","parrot_gettingstarted_compatible_subsystems.html"],["Code Interface Report","parrot_gettingstarted_compatible_interface.html"],["Eliminated Blocks","parrot_gettingstarted_compatible_reducedblocks.html"]];

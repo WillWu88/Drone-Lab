@@ -1,0 +1,20 @@
+controlCommand.o controlCommand.o: \
+ C:/ProgramData/MATLAB/SupportPackages/R2022a/toolbox/target/supportpackages/parrot/src/controlCommand.c \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2022a/toolbox/target/SUPPOR~1/parrot/include/controlCommand.h \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2022a/toolbox/target/SUPPOR~1/parrot/include/HAL.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_compatible_ert_rtw/parrot_gettingstarted_compatible_types.h \
+ C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_compatible_ert_rtw/rtwtypes.h \
+ C:/PROGRA~1/MATLAB/R2022a/extern/include/tmwtypes.h \
+ C:/PROGRA~3/MATLAB/SUPPOR~1/R2022a/toolbox/target/SUPPOR~1/parrot/include/HAL.h
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2022a/toolbox/target/SUPPOR~1/parrot/include/controlCommand.h:
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2022a/toolbox/target/SUPPOR~1/parrot/include/HAL.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_compatible_ert_rtw/parrot_gettingstarted_compatible_types.h:
+
+C:/Users/Willi/Desktop/Drone-Lab/Final2/parrot_gettingstarted_compatible_ert_rtw/rtwtypes.h:
+
+C:/PROGRA~1/MATLAB/R2022a/extern/include/tmwtypes.h:
+
+C:/PROGRA~3/MATLAB/SUPPOR~1/R2022a/toolbox/target/SUPPOR~1/parrot/include/HAL.h:

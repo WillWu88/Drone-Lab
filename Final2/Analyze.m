@@ -28,6 +28,7 @@ load('RSdata.mat');
 % Controls
 figure;
 plot(rt_test_mixer.signals.values);
+legend('T','A','E','R');
 title('Thrust');
 
 

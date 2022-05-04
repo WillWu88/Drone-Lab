@@ -1,6 +1,6 @@
 %% Homework 6
 % by Jackson Cox, Will Wu
-clear, clc, close all;
+clc, close all;
 
 %% Extract ground pressure
 load('Ground.mat');
