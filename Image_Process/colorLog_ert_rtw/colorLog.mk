@@ -2,7 +2,7 @@
 ## Makefile generated for component 'colorLog'. 
 ## 
 ## Makefile     : colorLog.mk
-## Generated on : Sat Apr 30 10:00:41 2022
+## Generated on : Sun May 08 21:08:41 2022
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/colorLog.so
 ## Product type : executable
 ## 
