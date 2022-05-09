@@ -31,8 +31,6 @@ plot(rt_test_mixer.signals.values);
 legend('T','A','E','R');
 title('Thrust');
 
-
-
 figure;
 subplot(2,3,1);
 plot(rt_phi_est.signals.values);

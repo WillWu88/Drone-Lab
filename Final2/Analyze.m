@@ -5,7 +5,7 @@ clc, clear close all;
 %% Extract ground pressure
 load('Ground.mat');
 ground_pressure = rt_pressure.signals.values; % pascals
-g = 9.8; % acceleration due to gravity m/s^2
+g = 9.81; % acceleration due to gravity m/s^2
 M = 0.0289644; % molar mass of air in kg/mol
 R = 8.31432; % universal gas constant Nm/mol/k
 p0 = 101325; % Pa standard pressure
