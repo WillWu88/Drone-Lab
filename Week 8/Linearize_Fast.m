@@ -1,4 +1,4 @@
-% Jackson Cox
+% Jackson Cox, Will Wu
 % Assignment 7
 
 clc, clear; close all;
@@ -59,16 +59,16 @@ B = subs(B, [m Jxx Jyy Jzz], [.068 .69e-4 .775e-4 1.5e-4]);
 
 % Decoupling into 5 Different Systems
 % Throttle, PD, and w
-A_dT_PD = double(A(3:4,3:4));
-B_dT_PD = double(B(3:4,1));
-A_dt_v = double(A(5:7,5:7));
-A_dt_u = double(A(8:10,8:10));
-A_dt_psi = double(A(11:12,11:12));
-B_dt_v = double(B(5:7, 2));
-B_dt_u = double(B(8:10, 3));
-B_dt_psi = double(B(11:12,4));
-A_dt_PN = double(A(1:2,1:2));
-B_dt_PN = double([A(1,8) A(1,11);A(2,8) A(2,11)]);
+A_dT_PD = double(A(3:4,3:4))
+B_dT_PD = double(B(3:4,1))
+A_dt_v = double(A(5:7,5:7))
+A_dt_u = double(A(8:10,8:10))
+A_dt_psi = double(A(11:12,11:12))
+B_dt_v = double(B(5:7, 2))
+B_dt_u = double(B(8:10, 3))
+B_dt_psi = double(B(11:12,4))
+A_dt_PN = double(A(1:2,1:2))
+B_dt_PN = double([A(1,8) A(1,11);A(2,8) A(2,11)])
 
 %% Controllability and Observability
 syms s
@@ -95,5 +95,5 @@ tf_pn = simplify(eye(2) * inv(s*eye(2) - A_dt_PN) * B_dt_PN);
 %% Calculating LQR
 [K_PD, S] = lqr(A_dT_PD, B_dT_PD, [50 0; 0 1], 1);
 [K_v, S] = lqr(A_dt_v, B_dt_v, [1 0 0; 0 50 0; 0 0 1], 1);
-[K_u, S] = lqr(A_dt_u, B_dt_u, [1 0 0; 0 1 0; 0 0 50], 1);
+[K_u, S] = lqr(A_dt_u, B_dt_u, [1 0 0; 0 50 0; 0 0 1], 1);
 [K_psi, S] = lqr(A_dt_psi, B_dt_psi, [50 0; 0 1], 1);
